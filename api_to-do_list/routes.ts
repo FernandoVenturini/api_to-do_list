@@ -5,9 +5,7 @@ const taskController = new TaskController();
 
 const router = Router();
 
-router.get('/task', (req, res) => {
-    res.send('Welcome to the API!');
-});
+router.get('/task', taskController.get);
 
 router.get('/task/:id_task', (req, res) => {
     const taskId = req.params.id_task;
