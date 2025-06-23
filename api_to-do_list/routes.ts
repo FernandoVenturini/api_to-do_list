@@ -7,10 +7,7 @@ const router = Router();
 
 router.get('/task', taskController.get);
 
-router.get('/task/:id_task', (req, res) => {
-    const taskId = req.params.id_task;
-    res.send(`Details for task with ID: ${taskId}`);
-});
+router.get('/task/:id_task', taskController.getById);
 
 router.post('/task', taskController.add);
 

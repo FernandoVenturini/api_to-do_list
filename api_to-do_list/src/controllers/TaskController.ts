@@ -24,6 +24,10 @@ class TaskController {
         }
     }
 
+    getById(Req: Request, Res: Response) {
+        const {id_task} = Req.params;
+    }
+
     add(Req:Request, Res:Response) {
         const { id, descricao, data, status } = Req.body;
 
