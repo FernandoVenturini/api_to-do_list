@@ -22,6 +22,10 @@ class TaskService {
         return tasks;
     }
 
+    getById(id_task: string): Task {
+        const result;
+    }
+
     add(data:Task): Task{
         return taskRepository.add(data);
     }

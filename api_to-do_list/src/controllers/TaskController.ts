@@ -26,6 +26,17 @@ class TaskController {
 
     getById(Req: Request, Res: Response) {
         const {id_task} = Req.params;
+
+        if (id_task) {
+            const result = taskService.getById(id_task);
+            if (result) {
+                Res.json(result);
+                Res.status(200);
+            } else {
+                Res.json({error: "Task not found!"});
+                Res.status(404);
+            }
+        }
     }
 
     add(Req:Request, Res:Response) {
