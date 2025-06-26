@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "CommonJS",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "outDir": "./dist",
+      "rootDir": "./",
+      "strict": true
+    },
+    "include": ["./**/*.ts", "src/repositories/TaskRepository.ts"],
+    "exclude": ["node_modules"]
+  }
+  
