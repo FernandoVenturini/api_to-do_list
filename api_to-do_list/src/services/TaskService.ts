@@ -22,8 +22,16 @@ class TaskService {
         return tasks;
     }
 
-    getById(id_task: string): Task {
-        const result;
+    getById(id_task: string): Task | undefined {
+        const result = taskRepository.get();
+    
+        const task = result.map((obj) => {
+            if (obj.id === id_task) {
+                return obj;
+            }
+        });
+
+        return task;
     }
 
     add(data:Task): Task{

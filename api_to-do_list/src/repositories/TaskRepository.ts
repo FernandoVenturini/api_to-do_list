@@ -11,6 +11,7 @@ class TaskRepository {
         return this.tasks;
     }
 
+
     add(data: Task): Task {
         this.tasks.push(data);
         return data;
