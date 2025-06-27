@@ -71,6 +71,18 @@ class TaskController {
         }
 
     }
+
+    delete.(Req: Request, Res: Response ) {
+        const { id_task } = Req.params; // assuming the ID is passed as a URL parameter
+
+        if (id_task) {
+            const result = taskService.delete(id_task); // call the service to delete the task
+            Res.json(result); // return the result of the deletion
+        } else  {
+            Res.json9({ERROR: "id_task is required!"});
+            Res.status(400); // bad request
+        }
+    }
 }
 
 export default TaskController;

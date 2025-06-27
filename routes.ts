@@ -16,10 +16,6 @@ router.post('/task', taskController.add);
 
 router.put('/task/:id_task', taskController.update);
 
-router.delete('/task/:id_task', (req, res) => {
-    const taskId = req.params.id_task;
-    // Here you would typically delete the task from a database
-    res.send(`Task with ID: ${taskId} deleted`);
-})
+router.delete('/task/:id_task', taskController.delete);
 
 export default router;

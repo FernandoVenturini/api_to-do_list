@@ -20,6 +20,11 @@ class TaskRepository {
         this.tasks[position] = data; // update the task at the specified index
         return data; // return the updated task
     }
+
+    delete(position: number) {
+        this.tasks.splice(position, 1); // remove the task at the specified index
+        return position; // return the index of the deleted task
+    }
     
 }
 

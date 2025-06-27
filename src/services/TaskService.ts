@@ -59,6 +59,16 @@ class TaskService {
             return {}; // return an error if the task is not found
         }
     }
+
+    delete(id_task: string) { // assuming id_task is a string
+        const position = this.getIndexById(id_task); // get the index of the task with the given id_task
+        
+        if(position !== 99999) { // if the task is not found
+            return taskRepository.delete(position); // update the task with the given id
+        } else {
+            return {}; // return an error if the task is not found
+        }
+    }
 }
 
 export default TaskService;
