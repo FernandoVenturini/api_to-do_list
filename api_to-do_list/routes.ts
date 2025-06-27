@@ -11,6 +11,8 @@ router.get('/task/:id_task', taskController.getById);
 
 router.post('/task', taskController.add);
 
+router.put('/task', taskController.update);
+
 router.delete('/task/:id_task', (req, res) => {
     const taskId = req.params.id_task;
     // Here you would typically delete the task from a database
