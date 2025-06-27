@@ -11,7 +11,7 @@ class TaskController {
 
     }
 
-    get(Req:Request, Res:Response) {
+    get(Req: Request, Res: Response) {
         const status = Req.query.status;
 
         if (status && (status === 'Em andamento' || status === 'Concluida')) {
@@ -19,27 +19,29 @@ class TaskController {
             Res.json(result);
             Res.status(200);
         } else {
-            Res.json({error: 'Invalie status parameter!'});
+            Res.json({ error: 'Invalie status parameter!' });
             Res.status(400);
         }
     }
 
     getById(Req: Request, Res: Response) {
-        const {id_task} = Req.params;
+        const { id_task } = Req.params;
 
         if (id_task) {
             const result = taskService.getById(id_task);
+
+            // If the task is found, return it; otherwise, return an error message
             if (result) {
                 Res.json(result);
                 Res.status(200);
             } else {
-                Res.json({error: "Task not found!"});
+                Res.json({ error: "Task not found!" });
                 Res.status(404);
             }
         }
     }
 
-    add(Req:Request, Res:Response) {
+    add(Req: Request, Res: Response) {
         const { id, descricao, data, status } = Req.body;
 
         if (id && descricao && data && status) {
@@ -49,15 +51,43 @@ class TaskController {
                 Res.json(result);
                 Res.status(201);
             } else {
-                Res.json({error: "Invalid status: must be 'Pendente', 'Em andamento', or 'Concluida'."});
+                Res.json({ error: "Invalid status: must be 'Pendente', 'Em andamento', or 'Concluida'." });
                 Res.status(400);
-            }            
+            }
         } else {
-            Res.json({error: "Invalid parameters!"});
+            Res.json({ error: "Invalid parameters!" });
             Res.status(401);
         }
 
     }
-}
 
+    update(Req: Request, Res: Response) {
+        const { id, descricao, data, status } = Req.body;
+        const { id_task } = Req.params;
+
+        if (id && descricao && data && status && id_task) {
+            
+            if (status === "Pendente" || status === "Em andamento" || status === "Concluida") {
+                const result = taskService.update(Req.body, id_task);
+                if (result) {
+                    Res.json(result);
+                    Res.status(200);
+                } else {
+                    Res.json({ error: "Task not found!" });
+                    Res.status(404);
+                }
+            } else {
+                Res.json({ error: "Invalid status: must be 'Pendente', 'Em andamento', or 'Concluida'." });
+                Res.status(400);
+            }
+
+        } else {
+            Res.json({
+                error:
+                    "Invalid Parameters",
+            });
+            Res.status(400);
+        }
+    }
+}
 export default TaskController;

@@ -22,8 +22,10 @@ class TaskService {
         return tasks;
     }
 
-    getById(id_task: string): Task | undefined {
+    getById(id_task: string): Task | {} {
         const result = taskRepository.get();
+
+        let task = {};
     
         const task = result.map((obj) => {
             if (obj.id === id_task) {
@@ -36,6 +38,10 @@ class TaskService {
 
     add(data:Task): Task{
         return taskRepository.add(data);
+    }
+
+    update(data: Task, id_task: string) {
+        
     }
 }
 
